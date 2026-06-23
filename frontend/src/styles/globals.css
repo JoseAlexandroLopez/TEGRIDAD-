@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+/* Configuración del Tema Oficial de TEGRIDAD para Tailwind v4 */
+@theme {
+  --color-primary: #5C8001;
+  --color-primary-light: #7CB518;
+  --color-accent: #FB6107;
+  --color-accent-hover: #E55300;
+  --color-gold: #F3DE2C;
+  
+  --color-background-light: #F4F6F8;
+  --color-background-dark: #121212;
+  --color-surface-light: #FFFFFF;
+  --color-surface-dark: #1E1E1E;
+  
+  --font-sans: "Poppins", sans-serif;
+}
+
+/* Estilos Base del Sistema */
+@layer base {
+  body {
+    background-color: var(--color-background-light);
+    color: #333333;
+    font-family: var(--font-sans);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Soporte nativo para Modo Oscuro */
+  .dark body {
+    background-color: var(--color-background-dark);
+    color: #E0E0E0;
+  }
+}
+
+/* Personalización del Scrollbar Premium */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}

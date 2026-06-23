@@ -1,0 +1,24 @@
+{
+  "short_name": "Tegridad",
+  "name": "Tegridad Transportes - Venta de Pasajes",
+  "description": "Sistema de venta y reserva de pasajes interprovinciales Cusco - Lima",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#6a8e23",
+  "background_color": "#111111",
+  "orientation": "portrait"
+}
