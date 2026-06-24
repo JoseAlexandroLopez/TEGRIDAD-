@@ -16,7 +16,9 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-// Comprobar la conexión al arrancar
+// --- MODO DEMO: DESACTIVAMOS LA PRUEBA DE CONEXIÓN INICIAL ---
+// Comentamos esto para que Render no se rompa al no encontrar la BD local
+/*
 pool.getConnection()
   .then(connection => {
     console.log(`✅ Conectado a la base de datos MySQL (${process.env.DB_DATABASE})`);
@@ -25,5 +27,8 @@ pool.getConnection()
   .catch(err => {
     console.error('❌ Error fatal al conectar a la base de datos:', err.message);
   });
+*/
+
+console.log("⚠️ Base de datos en espera (Prueba de conexión inicial desactivada para el Modo Demo)");
 
 export default pool;
