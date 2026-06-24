@@ -7,7 +7,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  // Permitimos que Vercel se conecte sin ser bloqueado
+  origin: ['http://localhost:5173', 'https://tegridad-six.vercel.app'], 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   credentials: true
