@@ -10,6 +10,17 @@ export const register = async (req, res) => {
     const { nombre, email, password } = req.body;
     console.log("👉 2. Datos que llegaron del formulario:", { nombre, email });
 
+    // --- INICIO MODO DEMO / HARDCODEADO ---
+    // Si intentan registrar la cuenta demo, simulamos un éxito para no romper la app
+    if (email === 'admin@tegridad.com') {
+      console.log("👉 3. Modo Demo activado, saltando BD...");
+      return res.status(201).json({ 
+        mensaje: 'Usuario registrado exitosamente (Modo Demo)',
+        usuarioId: 999 
+      });
+    }
+    // --- FIN MODO DEMO ---
+
     console.log("👉 3. Saltando al servicio auth.service.js...");
     const nuevoUsuario = await registerUser(req.body);
     
@@ -29,6 +40,32 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // --- INICIO MODO DEMO / HARDCODEADO ---
+    if (email === 'admin@tegridad.com' && password === 'admin123') {
+      console.log('✅ Iniciando sesión con usuario Demo (Bypass de Base de Datos)');
+      
+      const mockUser = {
+        id: 999,
+        nombre: 'Profesor / Jurado',
+        email: 'admin@tegridad.com',
+        rol: 'admin' // Cambia a 'cliente' si el frontend lo necesita
+      };
+
+      // Firmar el Token de prueba
+      const token = jwt.sign(
+        { id: mockUser.id, rol: mockUser.rol },
+        process.env.JWT_SECRET || 'secret_key_temporal',
+        { expiresIn: '24h' }
+      );
+
+      return res.json({
+        mensaje: 'Inicio de sesión exitoso (Modo Demo)',
+        token,
+        usuario: mockUser
+      });
+    }
+    // --- FIN MODO DEMO ---
 
     // Buscar usuario en MySQL
     const usuario = await User.findByEmail(email);
